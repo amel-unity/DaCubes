@@ -6,6 +6,7 @@ using Unity.Transforms;
 using Random= Unity.Mathematics.Random;
 using Time = UnityEngine.Time;
 
+//Should stop using JobComponentSystem and use SystemBase instead
 public class SpawnerSystem : JobComponentSystem
 {
     private EndInitializationEntityCommandBufferSystem endInitializationEntityCommandBufferSystem;
@@ -57,6 +58,15 @@ public class SpawnerSystem : JobComponentSystem
         endInitializationEntityCommandBufferSystem.AddJobHandleForProducer(jobHandle);
 
         return jobHandle;
+
+        /* Job.WithCode(() =>
+     {
+         new SpawnerJob(
+                     endInitializationEntityCommandBufferSystem.CreateCommandBuffer().ToConcurrent(),
+                     new Random((uint)UnityEngine.Random.Range(0, int.MaxValue)),
+                     Time.DeltaTime);     
+     }).Run();
+     */
     }
 
 }
