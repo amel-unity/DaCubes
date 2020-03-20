@@ -27,7 +27,9 @@ public class GravityApplicationSystem : JobComponentSystem
             gravityApplierGroup = GetComponentDataFromEntity<GravityApplier>(),
             velocityGroup = GetComponentDataFromEntity<Velocity>()
         };
-        return applicationJob.Schedule(stepPhysicsWorld.Simulation, ref buildPhysicsWorld.PhysicsWorld, inputDeps);
+        var appJob = applicationJob.Schedule(stepPhysicsWorld.Simulation, ref buildPhysicsWorld.PhysicsWorld, inputDeps);
+        appJob.Complete();
+        return appJob;
     }
 
     private struct ApplicationJob : ITriggerEventsJob

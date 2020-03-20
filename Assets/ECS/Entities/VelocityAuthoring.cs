@@ -10,7 +10,7 @@ using Random = UnityEngine.Random;
 internal class VelocityAuthoring : MonoBehaviour, IConvertGameObjectToEntity
 {
     public float3 Value;
-    public bool ApplyGravity;
+    public bool ApplyGravity =false;
 
 
     public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)

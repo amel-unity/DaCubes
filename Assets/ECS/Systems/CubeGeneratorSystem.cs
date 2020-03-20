@@ -27,7 +27,7 @@ public class CubeGeneratorSystem : SystemBase
         Entities.WithName("MoveBackword")
             .ForEach((ref Velocity velocity) =>
             {
-                velocity.Value += (float3)new float3(0,0,-1) * deltaTime;
+                velocity.Value += (float3)new float3(0, 0, -1) * deltaTime;
             }).Run();
 
         //Entities.WithName("ApplyFloorCollision")
