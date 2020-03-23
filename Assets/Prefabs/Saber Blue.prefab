@@ -105,7 +105,7 @@ MonoBehaviour:
     Value:
       x: -90
       y: 0
-      z: 90
+      z: -90
     RotationOrder: 4
   m_Capsule:
     Height: 2.0000005
@@ -129,7 +129,7 @@ MonoBehaviour:
     m_Template: {fileID: 0}
     m_IsTrigger:
       m_Override: 0
-      m_Value: 0
+      m_Value: 1
     m_Friction:
       m_Override: 0
       m_Value:
@@ -317,6 +317,7 @@ GameObject:
   - component: {fileID: 8490185970152364262}
   - component: {fileID: 358883955250533599}
   - component: {fileID: 693587205982883172}
+  - component: {fileID: 7498269081730648060}
   m_Layer: 0
   m_Name: Saber Blue
   m_TagString: Untagged
@@ -402,3 +403,15 @@ MonoBehaviour:
     Tag05: 1
     Tag06: 1
     Tag07: 1
+--- !u!114 &7498269081730648060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8441600076962168234}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63c688df09930ca469b22d66c5b73e7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
