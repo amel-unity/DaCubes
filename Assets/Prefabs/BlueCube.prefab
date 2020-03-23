@@ -111,6 +111,10 @@ MonoBehaviour:
     x: 0
     y: 0
     z: 0
+  MoveVector:
+    x: 0
+    y: 0
+    z: -1
 --- !u!114 &6428198013455701178
 MonoBehaviour:
   m_ObjectHideFlags: 0
