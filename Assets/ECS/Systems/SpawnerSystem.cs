@@ -1,10 +1,13 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
+
 using Unity.Entities;
 using Unity.Jobs;
 using Unity.Mathematics;
 using Unity.Transforms;
 using Random= Unity.Mathematics.Random;
 using Time = UnityEngine.Time;
+using UnityEngine;
 
 //Should stop using JobComponentSystem and use SystemBase instead
 public class SpawnerSystem : JobComponentSystem
@@ -36,8 +39,8 @@ public class SpawnerSystem : JobComponentSystem
             if(spawner.secondsForNextSpawn >= 0){ return; }
 
             spawner.secondsForNextSpawn += spawner.spawnFrequency;
-
-            Entity instance = entityCommandBuffer.Instantiate(index, spawner.prefab);
+            Entity prefabToSpawn = (random.NextFloat() > 0.5f) ? spawner.redCubePrefab : spawner.blueCubePrefab;
+            Entity instance = entityCommandBuffer.Instantiate(index, prefabToSpawn);
             entityCommandBuffer.SetComponent(index, instance, new Translation
             {
                 //random.NextFloat3Direction() gives a random vector3 and random.NextFloat() returns random float between 0 and 1

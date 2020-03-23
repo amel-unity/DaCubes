@@ -6,7 +6,8 @@ using Unity.Entities;
 
 public struct SpawnerEntitiesCubes : IComponentData
 {
-    public Entity prefab;
+    public Entity redCubePrefab;
+    public Entity blueCubePrefab;
     public float spawnRay;
     public float spawnFrequency;
     public float secondsForNextSpawn;
