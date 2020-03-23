@@ -128,6 +128,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1767680619, guid: fc006b95f3c1eb5449b1f5e3a2cc278c, type: 3}
+      propertyPath: blueCubeprefab
+      value: 
+      objectReference: {fileID: 1673933396498000897, guid: 87fc7058cfa3d314b9518ad652a433e3,
+        type: 3}
+    - target: {fileID: 1767680619, guid: fc006b95f3c1eb5449b1f5e3a2cc278c, type: 3}
+      propertyPath: redCubeprefab
+      value: 
+      objectReference: {fileID: 6521859969411438500, guid: 464f60673d3af5849be8f9b4a13d9677,
+        type: 3}
     - target: {fileID: 3190847667704564568, guid: fc006b95f3c1eb5449b1f5e3a2cc278c,
         type: 3}
       propertyPath: m_LocalPosition.x
