@@ -7,6 +7,16 @@ using Random = UnityEngine.Random;
 public class CubeGeneratorSystem : SystemBase
 {
     const float floor = -3;
+    //protected override void OnCreate()
+    //{
+    //    base.OnCreate();
+
+    //    Entities.WithName("InitialMove")
+    //        .ForEach((ref Velocity velocity) =>
+    //        {
+    //            velocity.MoveVector = new float3(0, 0, -1) ;
+    //        }).Run();
+    //}
     protected override void OnUpdate()
     {
 
@@ -24,10 +34,10 @@ public class CubeGeneratorSystem : SystemBase
                 transform.position = Position.Value;
             }).Run();
 
-        Entities.WithName("MoveBackword")
+        Entities.WithName("Move")
             .ForEach((ref Velocity velocity) =>
             {
-                velocity.Value += (float3)new float3(0, 0, -1) * deltaTime;
+                velocity.Value += velocity.MoveVector * deltaTime;
             }).Run();
 
         //Entities.WithName("ApplyFloorCollision")

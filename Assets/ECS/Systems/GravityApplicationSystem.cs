@@ -3,6 +3,7 @@ using Unity.Jobs;
 using Unity.Physics;
 using Unity.Physics.Systems;
 using Unity.Collections;
+using Unity.Mathematics;
 
 public class GravityApplicationSystem : JobComponentSystem
 {
@@ -46,7 +47,7 @@ public class GravityApplicationSystem : JobComponentSystem
                 if (velocityGroup.HasComponent(triggerEvent.Entities.EntityB))
                 {
                     Velocity velocity = velocityGroup[triggerEvent.Entities.EntityB];
-                    velocity.ApplyGravity = true;
+                    velocity.MoveVector = new float3(0,-10,0);
                     velocityGroup[triggerEvent.Entities.EntityB] = velocity;
                 }
             }
@@ -56,7 +57,7 @@ public class GravityApplicationSystem : JobComponentSystem
                 if (velocityGroup.HasComponent(triggerEvent.Entities.EntityA))
                 {
                     Velocity velocity = velocityGroup[triggerEvent.Entities.EntityA];
-                    velocity.ApplyGravity = true;
+                    velocity.MoveVector = new float3(0, -10, 0);
                     velocityGroup[triggerEvent.Entities.EntityA] = velocity;
                 }
             }
