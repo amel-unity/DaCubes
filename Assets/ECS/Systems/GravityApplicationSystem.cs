@@ -47,7 +47,7 @@ public class GravityApplicationSystem : JobComponentSystem
                 if (velocityGroup.HasComponent(triggerEvent.Entities.EntityB))
                 {
                     Velocity velocity = velocityGroup[triggerEvent.Entities.EntityB];
-                    velocity.MoveVector = new float3(0,-10,0);
+                    velocity.MoveVector = new float3(0,-100,0);
                     velocityGroup[triggerEvent.Entities.EntityB] = velocity;
                 }
             }
@@ -57,7 +57,7 @@ public class GravityApplicationSystem : JobComponentSystem
                 if (velocityGroup.HasComponent(triggerEvent.Entities.EntityA))
                 {
                     Velocity velocity = velocityGroup[triggerEvent.Entities.EntityA];
-                    velocity.MoveVector = new float3(0, -10, 0);
+                    velocity.MoveVector = new float3(0, -100, 0);
                     velocityGroup[triggerEvent.Entities.EntityA] = velocity;
                 }
             }
