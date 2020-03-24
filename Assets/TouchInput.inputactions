@@ -1,0 +1,33 @@
+{
+    "name": "TouchInput",
+    "maps": [
+        {
+            "name": "RedSaber",
+            "id": "447b26ef-b2be-4364-94d9-6bf947d3720c",
+            "actions": [
+                {
+                    "name": "Drag",
+                    "type": "Button",
+                    "id": "30b97e38-d59f-448e-93a3-1043b596021c",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "a149fa23-83d1-45e4-b6ae-160ed1689eb6",
+                    "path": "<Touchscreen>/primaryTouch/press",
+                    "interactions": "Hold",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Drag",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
