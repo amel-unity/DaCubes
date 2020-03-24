@@ -49,6 +49,7 @@ public class GravityApplicationSystem : JobComponentSystem
                     Velocity velocity = velocityGroup[triggerEvent.Entities.EntityB];
                     velocity.MoveVector = new float3(0,-100,0);
                     velocityGroup[triggerEvent.Entities.EntityB] = velocity;
+                    //UIManager.Instance.IncrementScore(1);
                 }
             }
 
