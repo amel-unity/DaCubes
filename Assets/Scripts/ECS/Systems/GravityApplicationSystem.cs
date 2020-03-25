@@ -16,21 +16,18 @@ public class GravityApplicationSystem : JobComponentSystem
         stepPhysicsWorld = World.GetOrCreateSystem<StepPhysicsWorld>();
     }
 
-    //protected override JobHandle OnUpdate(JobHandle inputDeps)
-    //{
-    //    throw new System.NotImplementedException();
-    //}
-
     protected override JobHandle OnUpdate(JobHandle inputDeps)
     {
         var applicationJob = new ApplicationJob
         {
             gravityApplierGroup = GetComponentDataFromEntity<GravityApplier>(),
-            velocityGroup = GetComponentDataFromEntity<Velocity>()
+            velocityGroup = GetComponentDataFromEntity<Velocity>(),
+            score = 0
         };
-        var appJob = applicationJob.Schedule(stepPhysicsWorld.Simulation, ref buildPhysicsWorld.PhysicsWorld, inputDeps);
-        appJob.Complete();
-        return appJob;
+        var jobHandle = applicationJob.Schedule(stepPhysicsWorld.Simulation, ref buildPhysicsWorld.PhysicsWorld, inputDeps);
+        jobHandle.Complete();
+        UnityEngine.Debug.Log("the score" + applicationJob.score);
+        return jobHandle;
     }
 
     private struct ApplicationJob : ITriggerEventsJob
@@ -38,10 +35,12 @@ public class GravityApplicationSystem : JobComponentSystem
         //Query for the components we care about (as in ECS, we do stuff based on the components)
         [ReadOnly]  public ComponentDataFromEntity<GravityApplier> gravityApplierGroup;
         public ComponentDataFromEntity<Velocity> velocityGroup;
+        public int score;
 
         //This function will be called every time there is a trigger collision in the game
         public void Execute(TriggerEvent triggerEvent)
         {
+            score++;
             if (gravityApplierGroup.HasComponent(triggerEvent.Entities.EntityA))
             {
                 if (velocityGroup.HasComponent(triggerEvent.Entities.EntityB))
@@ -49,7 +48,6 @@ public class GravityApplicationSystem : JobComponentSystem
                     Velocity velocity = velocityGroup[triggerEvent.Entities.EntityB];
                     velocity.MoveVector = new float3(0,-100,0);
                     velocityGroup[triggerEvent.Entities.EntityB] = velocity;
-                    //UIManager.Instance.IncrementScore(1);
                 }
             }
 
