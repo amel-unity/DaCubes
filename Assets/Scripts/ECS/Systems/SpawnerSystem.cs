@@ -40,8 +40,8 @@ public class SpawnerSystem : JobComponentSystem
 
             spawner.secondsForNextSpawn += spawner.spawnFrequency;
             Entity prefabToSpawn = (random.NextFloat() > 0.5f) ? spawner.redCubePrefab : spawner.blueCubePrefab;
-            Entity instance = entityCommandBuffer.Instantiate(index, prefabToSpawn);
-            entityCommandBuffer.SetComponent(index, instance, new Translation
+            Entity instantiatedPrefab = entityCommandBuffer.Instantiate(index, prefabToSpawn);
+            entityCommandBuffer.SetComponent(index, instantiatedPrefab, new Translation
             {
                 //random.NextFloat3Direction() gives a random vector3 and random.NextFloat() returns random float between 0 and 1
                 Value = localToWorld.Position + random.NextFloat3Direction() * random.NextFloat() * spawner.spawnRay
