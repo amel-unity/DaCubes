@@ -21,24 +21,25 @@ public class CubeGeneratorSystem : SystemBase
     {
 
         float deltaTime = Time.DeltaTime;
-        Entities.WithName("ApplyPhysics")
-            .ForEach((ref Translation position, in Velocity velocity) =>
-            {
-                position.Value += velocity.Value * deltaTime;
-            }).Run();
-
-        Entities.WithName("CopyTransformToGameObject")
-            .WithoutBurst()
-            .ForEach((Transform transform, ref Translation Position) =>
-            {
-                transform.position = Position.Value;
-            }).Run();
-
         Entities.WithName("Move")
-            .ForEach((ref Velocity velocity) =>
-            {
-                velocity.Value += velocity.MoveVector * deltaTime;
-            }).Run();
+             .ForEach((ref Translation position, ref Velocity velocity) =>
+             {
+                 velocity.Value += velocity.MoveVector * deltaTime;
+                 position.Value += velocity.Value * deltaTime;
+
+             }).Run();
+
+        //Entities.WithName("CopyTransformToGameObject")
+        //    .WithoutBurst()
+        //    .ForEach((Transform transform, ref Translation Position) =>
+        //    {
+        //        transform.position = Position.Value;
+        //    }).Run();
+
+        //Entities.WithName("Move")
+        //    .ForEach((ref Velocity velocity) =>
+        //    {
+        //    }).Run();
 
         //Entities.WithName("ApplyFloorCollision")
         //    .ForEach((ref Translation position, ref Velocity velocity) =>
