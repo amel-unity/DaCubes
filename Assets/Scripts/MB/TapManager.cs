@@ -1,26 +1,24 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Entities;
 
-public class TapManager : MonoBehaviour
+//use a system for this
+/*
+public class TapManager : ComponentSystem
 {
-    // Start is called before the first frame update
-    void Start()
+    protected override void OnUpdate()
     {
-        
-    }
 
-    void Update()
-    {
-        if (Input.GetMouseButtonDown(0))
+         if (Input.GetTouch(0).phase == TouchPhase.Began)
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-
-            if (Physics.Raycast(ray, out hit))
-            {
-                Debug.Log(hit.collider.gameObject.name);
-            }
+            Vector3 screenPos = Input.GetTouch(0).position;
+            screenPos.z = 12f;
+            Vector3 worldPos = Camera.main.ScreenToWorldPoint(screenPos);
+            //right part of the screen to control red saber and other 
+            //EntityManager thing to update the entity (auth script in demo)
         }
+
     }
 }
+*/
