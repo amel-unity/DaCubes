@@ -26,7 +26,7 @@ public class GravityApplicationSystem : JobComponentSystem
         };
         var jobHandle = applicationJob.Schedule(stepPhysicsWorld.Simulation, ref buildPhysicsWorld.PhysicsWorld, inputDeps);
         jobHandle.Complete();
-        UnityEngine.Debug.Log("the score" + applicationJob.score);
+        //UnityEngine.Debug.Log("the score" + applicationJob.score);
         return jobHandle;
     }
 
