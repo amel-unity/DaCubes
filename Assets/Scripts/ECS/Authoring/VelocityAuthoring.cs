@@ -11,10 +11,11 @@ internal class VelocityAuthoring : MonoBehaviour, IConvertGameObjectToEntity
 {
     public float3 Value;
     public float3 MoveVector = new float3(0,0,-1);
+    public bool Touched = false;
 
     public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
     {
-        dstManager.AddComponentData(entity, new Velocity() { Value = Value, MoveVector =MoveVector});
+        dstManager.AddComponentData(entity, new Velocity() { Value = Value, MoveVector =MoveVector, Touched = Touched });
     }
 
    

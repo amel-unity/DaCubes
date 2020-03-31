@@ -9,4 +9,5 @@ public struct Velocity : IComponentData
 {
     public float3 Value;
     public float3 MoveVector;
+    public bool Touched;
 }
