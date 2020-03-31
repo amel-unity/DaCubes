@@ -22,7 +22,7 @@ public class GravityApplicationSystem : JobComponentSystem
         {
             gravityApplierGroup = GetComponentDataFromEntity<GravityApplier>(),
             velocityGroup = GetComponentDataFromEntity<Velocity>(),
-            score = 0
+            score = UIManager.Instance.GetScoreValue()
         };
         var jobHandle = applicationJob.Schedule(stepPhysicsWorld.Simulation, ref buildPhysicsWorld.PhysicsWorld, inputDeps);
         jobHandle.Complete();
@@ -40,14 +40,18 @@ public class GravityApplicationSystem : JobComponentSystem
         //This function will be called every time there is a trigger collision in the game
         public void Execute(TriggerEvent triggerEvent)
         {
-            score++;
             if (gravityApplierGroup.HasComponent(triggerEvent.Entities.EntityA))
             {
                 if (velocityGroup.HasComponent(triggerEvent.Entities.EntityB))
                 {
                     Velocity velocity = velocityGroup[triggerEvent.Entities.EntityB];
                     velocity.MoveVector = new float3(0,-100,0);
+                    if (!velocityGroup[triggerEvent.Entities.EntityB].Touched) {
+                        UIManager.Instance.IncrementScore(1);
+                        velocity.Touched = true;
+                    }
                     velocityGroup[triggerEvent.Entities.EntityB] = velocity;
+
                 }
             }
 
@@ -57,6 +61,11 @@ public class GravityApplicationSystem : JobComponentSystem
                 {
                     Velocity velocity = velocityGroup[triggerEvent.Entities.EntityA];
                     velocity.MoveVector = new float3(0, -100, 0);
+                    if (!velocityGroup[triggerEvent.Entities.EntityB].Touched)
+                    {
+                        UIManager.Instance.IncrementScore(1);
+                        velocity.Touched = true;
+                    }
                     velocityGroup[triggerEvent.Entities.EntityA] = velocity;
                 }
             }
