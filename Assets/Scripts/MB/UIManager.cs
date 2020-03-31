@@ -18,11 +18,15 @@ public class UIManager : MonoBehaviour
     public void IncrementScore(int value)
     {
         ScoreValue += value;
-        SetScoreUIValue();
     }
     public void SetScoreUIValue()
     {
         Score.text = ScoreValue.ToString();
+    }
+    public int GetScoreValue()
+    {
+        SetScoreUIValue();
+        return ScoreValue;
     }
 
 }
