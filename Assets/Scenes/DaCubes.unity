@@ -1889,6 +1889,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: RedSaber
       objectReference: {fileID: 0}
+    - target: {fileID: 5939146345350838776, guid: 80ef180ca43fcf24bba62554ecae9db9,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 6977947076720857145, guid: 80ef180ca43fcf24bba62554ecae9db9,
         type: 3}
       propertyPath: m_PrimitiveOrientation.Value.z
