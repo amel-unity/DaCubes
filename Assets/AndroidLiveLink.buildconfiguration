@@ -1,0 +1,35 @@
+{
+    "Dependencies": [],
+    "Components": [{
+        "$type": "Unity.Build.Common.GeneralSettings, Unity.Build.Common",
+        "ProductName": "DaCubes",
+        "CompanyName": "Unity"
+    }, {
+        "$type": "Unity.Build.Common.SceneList, Unity.Build.Common",
+        "BuildCurrentScene": true,
+        "SceneInfos": [{
+            "$type": "Unity.Build.Common.SceneList+SceneInfo, Unity.Build.Common",
+            "Scene": "GlobalObjectId_V1-1-bf52f765ce6d69e47ac2dea437cbcb5b-102900000-0",
+            "AutoLoad": false
+        }],
+        "Scenes": []
+    }, {
+        "$type": "Unity.Platforms.Android.Build.AndroidAPILevels, Unity.Platforms.Android.Build",
+        "MinAPILevel": 19,
+        "TargetAPILevel": 21
+    }, {
+        "$type": "Unity.Platforms.Android.Build.AndroidArchitectures, Unity.Platforms.Android.Build",
+        "Architectures": 3
+    }, {
+        "$type": "Unity.Build.Classic.ClassicBuildProfile, Unity.Build.Classic",
+        "Target": 13,
+        "Configuration": 2,
+        "Pipeline": "GlobalObjectId_V1-1-2f60389e680fcb94eaea00ceddb2638a-93214019566545601-0",
+        "ExcludedAssemblies": []
+    }, {
+        "$type": "Unity.Build.Classic.ClassicScriptingSettings, Unity.Build.Classic",
+        "ScriptingBackend": 0,
+        "Il2CppCompilerConfiguration": 1,
+        "UseIncrementalGC": false
+    }]
+}
