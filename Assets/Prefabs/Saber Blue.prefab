@@ -318,6 +318,7 @@ GameObject:
   - component: {fileID: 358883955250533599}
   - component: {fileID: 693587205982883172}
   - component: {fileID: 7498269081730648060}
+  - component: {fileID: 1252727505}
   m_Layer: 0
   m_Name: Saber Blue
   m_TagString: Untagged
@@ -414,6 +415,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 63c688df09930ca469b22d66c5b73e7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1252727505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8441600076962168234}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 004edc09607bc9e45926b9b8ae695c55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &2872357137554552040

@@ -318,6 +318,7 @@ GameObject:
   - component: {fileID: 4060438522117229555}
   - component: {fileID: 5672596891802920334}
   - component: {fileID: 6470230868294333830}
+  - component: {fileID: 73096662}
   m_Layer: 0
   m_Name: Saber Red
   m_TagString: Untagged
@@ -414,6 +415,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 63c688df09930ca469b22d66c5b73e7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &73096662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2422032791797563582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d5b0ba338434af48a24ba7d22a12e27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &8124095825532758569
