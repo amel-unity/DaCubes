@@ -10,7 +10,7 @@
         "SceneInfos": [{
             "$type": "Unity.Build.Common.SceneList+SceneInfo, Unity.Build.Common",
             "Scene": "GlobalObjectId_V1-1-bf52f765ce6d69e47ac2dea437cbcb5b-102900000-0",
-            "AutoLoad": false
+            "AutoLoad": true
         }],
         "Scenes": []
     }, {
