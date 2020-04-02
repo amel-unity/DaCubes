@@ -4,7 +4,7 @@ using Unity.Transforms;
 using Unity.Mathematics;
 using Random = UnityEngine.Random;
 
-public class CubeGeneratorSystem : SystemBase
+public class CubeMoveSystem : SystemBase
 {
     protected override void OnUpdate()
     {
