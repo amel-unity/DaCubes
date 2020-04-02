@@ -1,9 +1,9 @@
 {
     "BuildSteps": [
-        "Unity.Build.Classic.BuildStepApplyPlayerSettings, Unity.Build.Classic",
-        "Unity.Build.Classic.BuildStepBuildClassicPlayer, Unity.Build.Classic",
         "Unity.Build.Classic.SaveScenesAndAssets, Unity.Build.Classic",
+        "Unity.Build.Classic.BuildStepApplyPlayerSettings, Unity.Build.Classic",
         "Unity.Scenes.Editor.BuildStepSubSceneBundles, Unity.Scenes.Editor",
+        "Unity.Build.Classic.BuildStepBuildClassicPlayer, Unity.Build.Classic",
         "Unity.Platforms.Android.Build.BuildStepProduceAndroidArtifacts, Unity.Platforms.Android.Build",
         "Unity.Scenes.Editor.BuildStepBuildClassicLiveLink, Unity.Scenes.Editor"
     ],
