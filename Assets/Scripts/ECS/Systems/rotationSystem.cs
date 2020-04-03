@@ -11,10 +11,9 @@ public class rotationSystem : SystemBase
         Entities.WithName("Rotate")
              .ForEach((ref Rotation rotation, in Triangle triangle) =>
              {
-                 float rotationThisFrame = deltaTime * Random.Range(3,10);
+                 float rotationThisFrame = deltaTime * Random.Range(5,10);
                  var q = quaternion.AxisAngle(new float3(0.0f, 0.0f, Random.Range(-1, 1)), rotationThisFrame);
                  rotation.Value = math.mul(q, rotation.Value);
-
              }).Run();
     }
 }
