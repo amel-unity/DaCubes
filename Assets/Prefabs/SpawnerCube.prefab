@@ -43,5 +43,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dd5738c166369f428e3ed90af116884, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 1673933396498000897, guid: 87fc7058cfa3d314b9518ad652a433e3, type: 3}
+  redCubeprefab: {fileID: 1673933396498000897, guid: 87fc7058cfa3d314b9518ad652a433e3,
+    type: 3}
+  blueCubeprefab: {fileID: 6521859969411438500, guid: 464f60673d3af5849be8f9b4a13d9677,
+    type: 3}
   maxSpawnDistance: 5
