@@ -25,7 +25,7 @@ public class SpawnerEntitiesCubesAuthoring : MonoBehaviour, IDeclareReferencedPr
         redCubePrefab = conversionSystem.GetPrimaryEntity(redCubeprefab),
         blueCubePrefab = conversionSystem.GetPrimaryEntity(blueCubeprefab),
         spawnRay = maxSpawnDistance,
-        spawnFrequency = Random.Range(1, 3),
+        spawnFrequency = Random.Range(1, 5),
         secondsForNextSpawn = 0f
 
         });
