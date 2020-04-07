@@ -40,35 +40,36 @@ public class GravityApplicationSystem : JobComponentSystem
         //This function will be called every time there is a trigger collision in the game
         public void Execute(TriggerEvent triggerEvent)
         {
+			Entity cubeEntity = Entity.Null;
+
+			//check which is which
             if (gravityApplierGroup.HasComponent(triggerEvent.Entities.EntityA))
             {
                 if (cubesData.HasComponent(triggerEvent.Entities.EntityB))
                 {
-                    Cube velocity = cubesData[triggerEvent.Entities.EntityB];
-                    velocity.MoveVector = new float3(0,-100,0);
-                    if (!cubesData[triggerEvent.Entities.EntityB].Touched) {
-                        UIManager.Instance.IncrementScore(1);
-                        velocity.Touched = true;
-                    }
-                    cubesData[triggerEvent.Entities.EntityB] = velocity;
-
+                    cubeEntity = triggerEvent.Entities.EntityB;
                 }
             }
-
-            if (gravityApplierGroup.HasComponent(triggerEvent.Entities.EntityB))
+			else if (gravityApplierGroup.HasComponent(triggerEvent.Entities.EntityB))
             {
                 if (cubesData.HasComponent(triggerEvent.Entities.EntityA))
                 {
-                    Cube velocity = cubesData[triggerEvent.Entities.EntityA];
-                    velocity.MoveVector = new float3(0, -100, 0);
-                    if (!cubesData[triggerEvent.Entities.EntityB].Touched)
-                    {
-                        UIManager.Instance.IncrementScore(1);
-                        velocity.Touched = true;
-                    }
-                    cubesData[triggerEvent.Entities.EntityA] = velocity;
+                    cubeEntity = triggerEvent.Entities.EntityA;
                 }
             }
+
+			//do the work (if the cube hasn't been disabled already)
+			if (cubeEntity != Entity.Null
+				&& !cubesData[cubeEntity].Touched)
+			{
+				Cube fallingCube = cubesData[cubeEntity];
+				fallingCube.MoveVector = new float3(0, -5, 0);
+				fallingCube.Touched = true;
+				cubesData[cubeEntity] = fallingCube;
+
+				//call Monobehaviour singleton to bridge the gap with Unity UI
+				UIManager.Instance.IncrementScore(1);
+			}
         }
     }
 

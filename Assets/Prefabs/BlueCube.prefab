@@ -97,7 +97,7 @@ MonoBehaviour:
     x: 0
     y: 0
     z: -1
-  speed: 5
+  speed: 20
 --- !u!114 &6428198013455701178
 MonoBehaviour:
   m_ObjectHideFlags: 0
