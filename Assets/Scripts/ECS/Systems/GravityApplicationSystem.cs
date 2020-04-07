@@ -21,7 +21,7 @@ public class GravityApplicationSystem : JobComponentSystem
         var applicationJob = new ApplicationJob
         {
             gravityApplierGroup = GetComponentDataFromEntity<GravityApplier>(),
-            velocityGroup = GetComponentDataFromEntity<Velocity>(),
+            cubesData = GetComponentDataFromEntity<Cube>(),
             score = UIManager.Instance.GetScoreValue()
         };
         var jobHandle = applicationJob.Schedule(stepPhysicsWorld.Simulation, ref buildPhysicsWorld.PhysicsWorld, inputDeps);
@@ -34,7 +34,7 @@ public class GravityApplicationSystem : JobComponentSystem
     {
         //Query for the components we care about (as in ECS, we do stuff based on the components)
         [ReadOnly]  public ComponentDataFromEntity<GravityApplier> gravityApplierGroup;
-        public ComponentDataFromEntity<Velocity> velocityGroup;
+        public ComponentDataFromEntity<Cube> cubesData;
         public int score;
 
         //This function will be called every time there is a trigger collision in the game
@@ -42,31 +42,31 @@ public class GravityApplicationSystem : JobComponentSystem
         {
             if (gravityApplierGroup.HasComponent(triggerEvent.Entities.EntityA))
             {
-                if (velocityGroup.HasComponent(triggerEvent.Entities.EntityB))
+                if (cubesData.HasComponent(triggerEvent.Entities.EntityB))
                 {
-                    Velocity velocity = velocityGroup[triggerEvent.Entities.EntityB];
+                    Cube velocity = cubesData[triggerEvent.Entities.EntityB];
                     velocity.MoveVector = new float3(0,-100,0);
-                    if (!velocityGroup[triggerEvent.Entities.EntityB].Touched) {
+                    if (!cubesData[triggerEvent.Entities.EntityB].Touched) {
                         UIManager.Instance.IncrementScore(1);
                         velocity.Touched = true;
                     }
-                    velocityGroup[triggerEvent.Entities.EntityB] = velocity;
+                    cubesData[triggerEvent.Entities.EntityB] = velocity;
 
                 }
             }
 
             if (gravityApplierGroup.HasComponent(triggerEvent.Entities.EntityB))
             {
-                if (velocityGroup.HasComponent(triggerEvent.Entities.EntityA))
+                if (cubesData.HasComponent(triggerEvent.Entities.EntityA))
                 {
-                    Velocity velocity = velocityGroup[triggerEvent.Entities.EntityA];
+                    Cube velocity = cubesData[triggerEvent.Entities.EntityA];
                     velocity.MoveVector = new float3(0, -100, 0);
-                    if (!velocityGroup[triggerEvent.Entities.EntityB].Touched)
+                    if (!cubesData[triggerEvent.Entities.EntityB].Touched)
                     {
                         UIManager.Instance.IncrementScore(1);
                         velocity.Touched = true;
                     }
-                    velocityGroup[triggerEvent.Entities.EntityA] = velocity;
+                    cubesData[triggerEvent.Entities.EntityA] = velocity;
                 }
             }
         }

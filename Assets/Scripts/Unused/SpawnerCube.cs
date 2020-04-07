@@ -4,7 +4,7 @@ using UnityEngine;
 using Unity.Mathematics;
 using Random = UnityEngine.Random;
 
-public class SpawnerCube : MonoBehaviour
+/* public class SpawnerCube : MonoBehaviour
 {
     public GameObject[] CubePrefabs;
     public int count = 100;
@@ -27,9 +27,9 @@ public class SpawnerCube : MonoBehaviour
                     Vector3 SpawnPosition = new Vector3(Random.Range(-10f,10f), Random.Range(-20f,20f), transform.position.z);
                     GameObject spawned = Instantiate(CubePrefabs[Random.Range(0,CubePrefabs.Length)], SpawnPosition, Quaternion.identity);
                  
-                    var velocityComponent = spawned.GetComponent<VelocityAuthoring>();
+                    var velocityComponent = spawned.GetComponent<CubeAuthoring>();
                     float3 velocity = (Quaternion.Euler(0, 0, a) * new float3(0, 0, -1)) * Random.Range(0, 10f);
-                    velocityComponent.Value = velocity;
+                    velocityComponent.Velocity = velocity;
 
                     a += step;
                 }
@@ -41,7 +41,7 @@ public class SpawnerCube : MonoBehaviour
     }
 
 
-    /* void Awake()
+    void Awake()
     {
         float a = 0;
         float step = 360f / count;
@@ -61,6 +61,7 @@ public class SpawnerCube : MonoBehaviour
 
             a += step;
         } 
-    }*/
+    }
 
 }
+ */
