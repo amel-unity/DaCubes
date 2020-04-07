@@ -22,7 +22,7 @@ public class Spawner : MonoBehaviour
             var velocityComponent = spawned.GetComponent<VelocityAuthoring>();
             Vector3 velocity = (Quaternion.Euler(0, 0, a) * math.up())* Random.Range(4f,12f);
 
-            velocityComponent.Value = velocity;
+            //velocityComponent.Value = velocity;
 
             var spriteRenderer = spawned.GetComponent<SpriteRenderer>();
             var color = Color.HSVToRGB(Random.value, 0.3f, 1f);

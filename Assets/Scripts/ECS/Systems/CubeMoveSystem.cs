@@ -9,8 +9,7 @@ public class CubeMoveSystem : SystemBase
         Entities.WithName("Move")
              .ForEach((ref Translation position, ref Velocity velocity) =>
              {
-                 velocity.Value += velocity.MoveVector * deltaTime;
-                 position.Value += velocity.Value * deltaTime;
+                 position.Value += velocity.MoveVector * velocity.Speed * deltaTime;
              }).Run();
     }
 }

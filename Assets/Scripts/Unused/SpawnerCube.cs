@@ -29,7 +29,7 @@ public class SpawnerCube : MonoBehaviour
                  
                     var velocityComponent = spawned.GetComponent<VelocityAuthoring>();
                     float3 velocity = (Quaternion.Euler(0, 0, a) * new float3(0, 0, -1)) * Random.Range(0, 10f);
-                    velocityComponent.Value = velocity;
+                    //velocityComponent.Value = velocity;
 
                     a += step;
                 }
