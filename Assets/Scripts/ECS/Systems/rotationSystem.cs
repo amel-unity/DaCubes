@@ -2,11 +2,11 @@
 using Unity.Transforms;
 using Unity.Mathematics;
 using Random = UnityEngine.Random;
-public class rotationSystem : SystemBase
+
+public class RotationSystem : SystemBase
 {
     protected override void OnUpdate()
     {
-
         float deltaTime = Time.DeltaTime;
         Entities.WithName("Rotate")
              .ForEach((ref Rotation rotation, in Triangle triangle) =>

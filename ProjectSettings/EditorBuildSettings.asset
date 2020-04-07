@@ -7,5 +7,5 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 1
     path: Assets/Scenes/DaCubes.unity
-    guid: bf52f765ce6d69e47ac2dea437cbcb5b
+    guid: d8924e6623acb45418a77f15cdbf5dfc
   m_configObjects: {}

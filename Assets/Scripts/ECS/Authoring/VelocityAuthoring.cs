@@ -15,7 +15,7 @@ internal class VelocityAuthoring : MonoBehaviour, IConvertGameObjectToEntity
 
     public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
     {
-        dstManager.AddComponentData(entity, new Velocity() { Value = Value, MoveVector =MoveVector, Touched = Touched });
+        dstManager.AddComponentData(entity, new Velocity() { Value = Value, MoveVector = MoveVector, Touched = Touched });
     }
 
    

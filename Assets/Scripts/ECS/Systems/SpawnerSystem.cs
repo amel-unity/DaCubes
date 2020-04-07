@@ -1,78 +1,40 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-
-using Unity.Entities;
-using Unity.Jobs;
+﻿using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
-using Random= Unity.Mathematics.Random;
-using Time = UnityEngine.Time;
-using UnityEngine;
 
-//Should stop using JobComponentSystem and use SystemBase instead
-public class SpawnerSystem : JobComponentSystem
+public class SpawnerSystem : SystemBase
 {
-    private EndInitializationEntityCommandBufferSystem endInitializationEntityCommandBufferSystem;
+    private EndInitializationEntityCommandBufferSystem endInitializationECBSystem;
 
     protected override void OnCreate()
     {
-        endInitializationEntityCommandBufferSystem = World.GetOrCreateSystem<EndInitializationEntityCommandBufferSystem>();
+		base.OnCreate();
+        endInitializationECBSystem = World.GetOrCreateSystem<EndInitializationEntityCommandBufferSystem>();
     }
 
-    private struct SpawnerJob : IJobForEachWithEntity<SpawnerEntitiesCubes, LocalToWorld>
+    protected override void OnUpdate()
     {
-        private EntityCommandBuffer.Concurrent entityCommandBuffer;
-        private readonly float deltaTime;
-        private Random random;
+		EntityCommandBuffer.Concurrent ecb = endInitializationECBSystem.CreateCommandBuffer().ToConcurrent();
+		float deltaTime = UnityEngine.Time.deltaTime;
 
-        //Constructor, everything passed here will be passed to the job schedule
-        public SpawnerJob(EntityCommandBuffer.Concurrent entityCommandBuffer, Random random, float deltaTime)
-        {
-            this.entityCommandBuffer = entityCommandBuffer;
-            this.random = random;
-            this.deltaTime = deltaTime;
-        }
-        public void Execute(Entity entity, int index, ref SpawnerEntitiesCubes spawner, ref LocalToWorld localToWorld)
-        {
-            spawner.secondsForNextSpawn -= deltaTime;
+		Entities.ForEach((Entity entity, int entityInQueryIndex, ref SpawnerEntitiesCubes spawner, ref LocalToWorld localToWorld) => 
+		{
+			spawner.secondsToNextSpawn -= deltaTime;
+			if(spawner.secondsToNextSpawn >= 0){ return; } //exit, no time to spawn yet
 
-            if(spawner.secondsForNextSpawn >= 0){ return; }
+			//queue an instantiate command to the EntityCommandBuffer
+			Entity prefabToSpawn = (spawner.randomness.NextFloat() > 0.5f) ? spawner.redCubePrefab : spawner.blueCubePrefab;
+            Entity instantiatedPrefab = ecb.Instantiate(entityInQueryIndex, prefabToSpawn);
 
-            spawner.secondsForNextSpawn += spawner.spawnFrequency;
-            Entity prefabToSpawn = (random.NextFloat() > 0.5f) ? spawner.redCubePrefab : spawner.blueCubePrefab;
-            Entity instantiatedPrefab = entityCommandBuffer.Instantiate(index, prefabToSpawn);
-
-            //random.NextFloat3Direction() gives a random vector3 and random.NextFloat() returns random float between 0 and 1
-            float3 RandomOffset =  random.NextFloat3Direction() * random.NextFloat() * spawner.spawnRay;
-
-            entityCommandBuffer.SetComponent(index, instantiatedPrefab, new Translation
+			//queue a SetComponent command to position the newly created entity at the back of the scene
+            float3 RandomOffset = spawner.randomness.NextFloat3Direction() * spawner.randomness.NextFloat() * spawner.spawnRadius; //random.NextFloat3Direction() gives a random unit-long vector3, and random.NextFloat() returns random float between 0 and 1
+			ecb.SetComponent(entityInQueryIndex, instantiatedPrefab, new Translation
             {
                 Value = new float3 (localToWorld.Position.x + RandomOffset.x, -9, localToWorld.Position.z + RandomOffset.z)
-            }); 
-        }
+            });
+
+			//update the time to the next entity spawn
+			spawner.secondsToNextSpawn += spawner.spawnFrequency;
+		}).Schedule();
     }
-    protected override JobHandle OnUpdate(JobHandle inputDeps)
-    {
-        var SpawnerJob = new SpawnerJob(
-            endInitializationEntityCommandBufferSystem.CreateCommandBuffer().ToConcurrent(),
-            new Random((uint)UnityEngine.Random.Range(0, int.MaxValue)),
-            Time.DeltaTime
-        );
-
-        JobHandle jobHandle = SpawnerJob.Schedule(this, inputDeps);
-
-        endInitializationEntityCommandBufferSystem.AddJobHandleForProducer(jobHandle);
-
-        return jobHandle;
-
-        /* Job.WithCode(() =>
-     {
-         new SpawnerJob(
-                     endInitializationEntityCommandBufferSystem.CreateCommandBuffer().ToConcurrent(),
-                     new Random((uint)UnityEngine.Random.Range(0, int.MaxValue)),
-                     Time.DeltaTime);     
-     }).Run();
-     */
-    }
-
 }

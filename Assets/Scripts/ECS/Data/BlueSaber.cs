@@ -2,7 +2,4 @@
 
 [GenerateAuthoringComponent]
 
-public struct BlueSaber : IComponentData
-{
-
-}
+public struct BlueSaber : IComponentData { }

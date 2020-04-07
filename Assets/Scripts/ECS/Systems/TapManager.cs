@@ -5,37 +5,64 @@ using Unity.Transforms;
 
 public class TapManager : SystemBase
 {
+	private Rect leftBounds, rightBounds;
+	private bool rightSaberOn, leftSaberOn;
+
+	protected override void OnCreate()
+	{
+        leftBounds = new Rect(0, 0, Screen.width / 2, Screen.height);
+        rightBounds = new Rect(Screen.width / 2, 0, Screen.width, Screen.height);
+	}
+
     protected override void OnUpdate()
     {
-
-        Rect Leftbounds = new Rect(0, 0, Screen.width / 2, Screen.height);
-        Rect Rightbounds = new Rect(Screen.width / 2, 0, Screen.width, Screen.height);
-
-
         Vector3 screenPos = Input.mousePosition;
         screenPos.z = 12f;
         Vector3 worldPos = Camera.main.ScreenToWorldPoint(screenPos);
 
-        //for test on pc (no multitouch though :v)
-        if (Input.GetMouseButton(0) && Rightbounds.Contains(Input.mousePosition))
+		//check if the finger is down or has been released
+		if(Input.GetMouseButtonDown(0))
+		{
+			if(leftBounds.Contains(screenPos))
+			{
+				//pick up blue saber
+            	//Debug.Log("Left!");
+				leftSaberOn = true;
+			}
+			else if(rightBounds.Contains(screenPos))
+			{
+				//pick up red saber
+            	//Debug.Log("Right!");
+				rightSaberOn = true;
+			}
+		}
+		else if(Input.GetMouseButtonUp(0))
+		{
+			//drop both sabers
+			rightSaberOn = false;
+			leftSaberOn = false;
+		}
+
+        //update sabers as needed
+		if (leftSaberOn)
         {
-            Debug.Log("Right!");
-            Entities.WithName("MoveSaberRed")
-              .ForEach((ref Translation position, in RedSaber redSaber) =>
-              {
-                  position.Value = worldPos;
-              }).Run();
-        }
-        else if (Input.GetMouseButton(0) && Leftbounds.Contains(Input.mousePosition))
-        {
-            Debug.Log("Left!");
-            Entities.WithName("MoveSaberBlue")
-            .ForEach((ref Translation position, in BlueSaber blueSaber) =>
+            Entities
+			.WithName("MoveSaberBlue")
+			.WithAll<BlueSaber>()
+            .ForEach((ref Translation position) =>
             {
                 position.Value = worldPos;
             }).Run();
         }
-
+        if (rightSaberOn)
+        {
+            Entities.WithName("MoveSaberRed")
+			.WithAll<RedSaber>()
+			.ForEach((ref Translation position) =>
+			{
+				position.Value = worldPos;
+			}).Run();
+        }
     }
 }
 

@@ -1,7 +1,4 @@
 ﻿using Unity.Entities;
 
 [GenerateAuthoringComponent]
-public struct Triangle : IComponentData
-{
-
-}
+public struct Triangle : IComponentData { }

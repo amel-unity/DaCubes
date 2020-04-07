@@ -2,6 +2,4 @@
 
 [GenerateAuthoringComponent]
 
-public struct RedSaber : IComponentData
-{
-}
+public struct RedSaber : IComponentData { }

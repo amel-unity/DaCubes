@@ -1,15 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using Unity.Entities;
-
+﻿using Unity.Entities;
 
 public struct SpawnerEntitiesCubes : IComponentData
 {
     public Entity redCubePrefab;
     public Entity blueCubePrefab;
-    public float spawnRay;
+    public float spawnRadius;
     public float spawnFrequency;
-    public float secondsForNextSpawn;
+    public float secondsToNextSpawn;
+	public Unity.Mathematics.Random randomness;
 }
 

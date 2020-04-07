@@ -1,12 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using Unity.Entities;
-using Unity.Transforms;
-using Unity.Mathematics;
+﻿using Unity.Entities;
 
 [GenerateAuthoringComponent]
-public struct GravityApplier : IComponentData
-{
-  
-}
+public struct GravityApplier : IComponentData { }

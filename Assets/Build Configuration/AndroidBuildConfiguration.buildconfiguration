@@ -9,7 +9,7 @@
         "BuildCurrentScene": true,
         "SceneInfos": [{
             "$type": "Unity.Build.Common.SceneList+SceneInfo, Unity.Build.Common",
-            "Scene": "GlobalObjectId_V1-1-bf52f765ce6d69e47ac2dea437cbcb5b-102900000-0",
+            "Scene": "GlobalObjectId_V1-1-d8924e6623acb45418a77f15cdbf5dfc-102900000-0",
             "AutoLoad": true
         }],
         "Scenes": []
@@ -23,7 +23,7 @@
     }, {
         "$type": "Unity.Build.Classic.ClassicBuildProfile, Unity.Build.Classic",
         "Target": 13,
-        "Configuration": 3,
+        "Configuration": 2,
         "Pipeline": "GlobalObjectId_V1-1-2f60389e680fcb94eaea00ceddb2638a-93214019566545601-0",
         "ExcludedAssemblies": []
     }, {
