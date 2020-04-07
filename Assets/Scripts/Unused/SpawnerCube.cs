@@ -29,7 +29,11 @@ using Random = UnityEngine.Random;
                  
                     var velocityComponent = spawned.GetComponent<CubeAuthoring>();
                     float3 velocity = (Quaternion.Euler(0, 0, a) * new float3(0, 0, -1)) * Random.Range(0, 10f);
+<<<<<<< HEAD
                     velocityComponent.Velocity = velocity;
+=======
+                    //velocityComponent.Value = velocity;
+>>>>>>> origin/master
 
                     a += step;
                 }
